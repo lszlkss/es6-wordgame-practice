@@ -25,6 +25,7 @@ class wordGameModel {
 		this._maxAttempts = maxAttempts;
 		this._alphabet = (alphabet === undefined) ? fillAlphabet() : alphabet.map(function(c) { return c.toUpperCase(); });
 		this._matchedLetters = [];
+		this._mask = new Array(word.length + 1).join('_');
 
 		checkAlphabet(this._alphabet, this._word);
 	}
@@ -32,13 +33,29 @@ class wordGameModel {
 	tryLetter(letter) {
 		letter = letter.toUpperCase();
 
+		String.prototype.allIndexOf = function(val) {
+			var indexArr = [];
+
+			for(let i = 0; i < this.length; i++) {
+				if(this[i] == val) {
+					indexArr.push(i);
+				}
+			}
+
+			return indexArr;
+		}
+
 		if(this._word.indexOf(letter) === -1) {
 			this._maxAttempts--;
 
 			return false;
 		} else {
-			if(this._matchedLetters.indexOf(letter) === -1) {
-				this._matchedLetters.push(letter);
+			var indexes = this._word.allIndexOf(letter);
+
+			for(let i = 0; i < indexes.length; i++) {
+				let tmp = this._mask.split('');
+				tmp[indexes[i]] = letter;
+				this._mask = tmp.join('');
 			}
 
 			return true;
@@ -50,7 +67,7 @@ class wordGameModel {
 			return 1;
 		}
 
-		if(this._matchedLetters.length == this._word.length) {
+		if(this._mask == this._word) {
 			return 2;
 		} else {
 			return 0;
@@ -59,6 +76,10 @@ class wordGameModel {
 
 	get word() {
 		return this._word;
+	}
+
+	get mask() {
+		return this._mask;
 	}
 
 	get maxAttempts() {
