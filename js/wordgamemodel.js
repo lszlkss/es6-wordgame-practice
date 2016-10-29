@@ -24,7 +24,6 @@ class wordGameModel {
 		this._word = word.toUpperCase();
 		this._maxAttempts = maxAttempts;
 		this._alphabet = (alphabet === undefined) ? fillAlphabet() : alphabet.map(function(c) { return c.toUpperCase(); });
-		this._matchedLetters = [];
 		this._mask = new Array(word.length + 1).join('_');
 
 		checkAlphabet(this._alphabet, this._word);
@@ -88,9 +87,5 @@ class wordGameModel {
 
 	get alphabet() {
 		return this._alphabet;
-	}
-
-	get matchedLetters() {
-		return this._matchedLetters;
 	}
 }
