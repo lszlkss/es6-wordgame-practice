@@ -8,7 +8,6 @@ class wordGame {
 		var gameDiv = this._uiDiv;
 		var partialDiv = this._partialDiv;
 		var attemptsDiv = this._attemptsDiv;
-		partialDiv.innerHTML = gameModel.mask;
 
 		for(let i = 0; i < gameModel.alphabet.length; i++) {
 			var letter = document.createElement('button');
@@ -29,7 +28,7 @@ class wordGame {
 				}
 
 				partialDiv.innerHTML = '<h2>' + gameModel.mask + '</h2>';
-				attemptsDiv.innerHTML = '<h2>' + gameModel.maxAttempts + '</h2>';
+				attemptsDiv.innerHTML = '<h4>' + gameModel.maxAttempts + ' attempts left</h4>';
 
 				if(gameModel.isGameOver() == 1) {
 					overText = 'You have lost this game.';
@@ -45,7 +44,7 @@ class wordGame {
 			gameDiv.appendChild(letter);
 		}
 	}
-	
+
 	set partialDiv(value) {
 		this._partialDiv = document.getElementById(value);
 		this._partialDiv.innerHTML = '';

@@ -1,0 +1,32 @@
+header {
+	color: #ffffff;
+	background-color: #3579e8;
+	padding: 1%;
+	border-bottom: 1px solid #000000;
+	font-variant: small-caps;
+	text-transform: capitalize;
+}
+
+section {
+	background-color: #eeeeee;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #000000;
+	padding: 1%;
+}
+
+footer {
+	color: #ffffff;
+	background-color: #999999;
+	padding: 1%;
+	border-bottom: 1px solid #000000;
+}
+
+footer a {
+	color: #ffffff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+footer a.hover {
+	text-decoration: none;
+}
